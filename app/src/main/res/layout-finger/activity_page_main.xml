@@ -3,13 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:padding="24dp">
+    style="@style/ConstraintLDefault"
+    tools:ignore="MissingDefaultResource">
 
     <ImageView
-
+        android:id="@+id/imageCyclists"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/cyclists"
+        app:layout_constraintBottom_toTopOf="@id/titleTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <TextView
@@ -18,8 +25,8 @@
         android:layout_height="wrap_content"
         android:lineSpacingExtra="4sp"
         android:text="Пожалуй, лучший фитнес трекер в ДВФУ"
-        android:textAlignment="center"
-        android:textColor="#000000"
+        android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/subtitleTextView"
@@ -32,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Созданный студентами"
-        android:textColor="#666666"
+        android:textColor="@color/grey"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/titleTextView"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,18 +52,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Зарегистрироваться"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:backgroundTint="@color/purple_500"
-        app:cornerRadius="16dp"
+        app:cornerRadius="30dp"
         android:textSize="18sp"
         android:paddingVertical="14dp"
         app:layout_constraintTop_toBottomOf="@id/subtitleTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.8"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="40dp"/>
 
-    <!-- Текст "Уже есть аккаунт?" -->
     <TextView
         android:id="@+id/loginTextView"
         android:layout_width="wrap_content"

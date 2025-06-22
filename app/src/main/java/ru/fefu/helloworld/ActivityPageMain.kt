@@ -1,23 +1,29 @@
-package ru.fefu.FEFUTrack
+package ru.fefu.helloworld
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import ru.fefu.helloworld.R
+
 
 class ActivityPageMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_page_register)
-        val backArr: Button = findViewById<R.id.imgBackarr>()
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_page_main)
+        val regButton: Button = findViewById(R.id.registerButton)
+        val loginText: TextView = findViewById(R.id.loginTextView)
 
-        backarr.setOnClickListener {
-            val intent = Intent(this, ActivityPageMain::class.java)
+        regButton.setOnClickListener {
+            val intent = Intent(this, ActivityPageRegister::class.java)
             startActivity(intent)
         }
 
-        val regButton: Button = findViewById(R.id.regButton)
+        loginText.setOnClickListener {
+            val intent = Intent(this, ActivityPageLogin::class.java)
+            startActivity(intent)
+        }
     }
-
 }

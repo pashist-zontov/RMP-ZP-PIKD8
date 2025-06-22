@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/ConstraintLDefault"
-    app:layout_constraintBottom_toTopOf=""
+    app:layout_constraintBottom_toTopOf="@id/loginTextInput"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -20,8 +20,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/imageBackarr"
-            style="@style/BackArr" />
+            android:id="@+id/imgBackarr"
+            style="@style/imgBackArr" />
 
         <TextView
             android:text="Вход"
@@ -40,6 +40,7 @@
         app:layout_constraintBottom_toTopOf="@id/passwordTextInput">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:background="@drawable/edit_text_border"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -60,6 +61,7 @@
         app:layout_constraintBottom_toTopOf="@id/regButton">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:background="@drawable/edit_text_border"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -72,7 +74,8 @@
         android:id="@+id/regButton"
         style="@style/MatButtons"
         android:layout_marginTop="35dp"
-        android:text="Продолжить"
+        app:cornerRadius="30dp"
+        android:text="Войти"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordTextInput">
