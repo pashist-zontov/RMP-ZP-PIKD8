@@ -23,8 +23,9 @@
         <activity android:name=".ActivityPageRegister">
         </activity>
         <activity android:name=".ActivityPageLogin">
-
         </activity>
+
+        <activity android:name=".ActivityEmpty"></activity>
     </application>
 
 </manifest>

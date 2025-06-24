@@ -52,6 +52,9 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-
+    <style name="FloatButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="cornerSize">50%</item>
+        <item name="android:backgroundTint">@color/purple_500</item>
+    </style>
 
 </resources>
