@@ -8,19 +8,17 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
-class FragmentSportsDetailsU : Fragment() {
+class GlobalDetailsFragmentUsers : Fragment() {
 
     companion object {
-        private const val ARG_ACTIVITY_ID = "activityId"
-        fun newInstance(activityId: Int) = FragmentSportsDetailsU().apply {
+        private const val ARG_ACTIVITY_ID = "activity_id"
+
+        fun newInstance(activityId: Int) = GlobalDetailsFragmentUsers().apply {
             arguments = Bundle().apply {
                 putInt(ARG_ACTIVITY_ID, activityId)
             }
         }
     }
-
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,11 +43,10 @@ class FragmentSportsDetailsU : Fragment() {
         activity?.let { updateUI(view, it) }
     }
 
-    private fun updateUI(view: View, activity: ActItemU.Act) {
+    private fun updateUI(view: View, activity: ActivityItemUsers.Activity) {
         view.findViewById<TextView>(R.id.typeText).text = activity.type
         view.findViewById<TextView>(R.id.distanceText).text = activity.distance
         view.findViewById<TextView>(R.id.durationText).text = activity.duration
         view.findViewById<TextView>(R.id.nameUser).text = activity.userName
     }
-
 }

@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-class ActivityPageLogin : AppCompatActivity() {
+class ActivityPageReg : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_page_login)
-        val backarr: Button = findViewById(R.id.imgBackarr)
+        setContentView(R.layout.activity_page_register)
+        val backArr: Button = findViewById(R.id.imgBackarr)
 
-        backarr.setOnClickListener {
+        backArr.setOnClickListener {
             val intent = Intent(this, ActivityPageMain::class.java)
             startActivity(intent)
         }

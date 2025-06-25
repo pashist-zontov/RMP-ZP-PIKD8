@@ -6,17 +6,18 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterMine(private val items: List<ActItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MineAdapter(private val items: List<ActivityItem>, private val onItemClick: (Int) -> Unit) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val TYPE_HEADER = 0
-        private const val TYPE_ACTIVITY = 1
+        private const val TYPE_ITEM = 1
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
-            is ActItem.Header -> TYPE_HEADER
-            is ActItem.Act -> TYPE_ACTIVITY
+            is ActivityItem.Header -> TYPE_HEADER
+            is ActivityItem.Activity -> TYPE_ITEM
         }
     }
 
@@ -35,32 +36,34 @@ class AdapterMine(private val items: List<ActItem>) : RecyclerView.Adapter<Recyc
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = items[position]) {
-            is ActItem.Header -> (holder as HeaderViewHolder).bind(item)
-            is ActItem.Act -> (holder as ActivityViewHolder).bind(item)
+            is ActivityItem.Header -> (holder as HeaderViewHolder).bind(item)
+            is ActivityItem.Activity -> (holder as ActivityViewHolder).bind(item, onItemClick)
         }
     }
 
     override fun getItemCount(): Int = items.size
 
-    inner class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val dateText: TextView = view.findViewById(R.id.someDay)
 
-        fun bind(header: ActItem.Header) {
-            dateText.text = header.date
+        fun bind(item: ActivityItem.Header) {
+            dateText.text = item.date
         }
     }
 
-    inner class ActivityViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ActivityViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val typeText: TextView = view.findViewById(R.id.typeText)
         private val distanceText: TextView = view.findViewById(R.id.distanceText)
         private val durationText: TextView = view.findViewById(R.id.durationText)
-        private val lastTimeText: TextView = view.findViewById(R.id.lastTimeText)
+        private val timeAgoText: TextView = view.findViewById(R.id.lastTimeText)
 
-        fun bind(activity: ActItem.Act) {
-            typeText.text = activity.type
-            distanceText.text = activity.distance
-            durationText.text = activity.duration
-            lastTimeText.text = activity.lastTime
+        fun bind(item: ActivityItem.Activity, onItemClick: (Int) -> Unit) {
+            typeText.text = item.type
+            distanceText.text = item.distance
+            durationText.text = item.duration
+            timeAgoText.text = item.timeAgo
+
+            itemView.setOnClickListener { onItemClick(item.id) }
         }
     }
 }

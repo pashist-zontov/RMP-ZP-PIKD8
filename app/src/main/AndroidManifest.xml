@@ -20,12 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityPageRegister">
+        <activity android:name=".ActivityPageReg">
         </activity>
         <activity android:name=".ActivityPageLogin">
         </activity>
 
-        <activity android:name=".ActivityEmpty"></activity>
+        <activity android:name=".ActivityPageEmpty"></activity>
     </application>
 
 </manifest>

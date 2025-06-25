@@ -2,26 +2,20 @@ package ru.fefu.helloworld
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SportsFragment : Fragment() {
     private lateinit var viewPager: ViewPager2
+    private lateinit var tabLayout: TabLayout
 
     companion object {
         fun newInstance() = SportsFragment()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -29,50 +23,29 @@ class SportsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_sportsbar_fr, container, false)
+        return inflater.inflate(R.layout.lets_begin_fr, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewPager = view.findViewById(R.id.ViewPager2)
+        tabLayout = view.findViewById(R.id.TabLayout)
+        val startButton = view.findViewById<FloatingActionButton>(R.id.letsBegin)
+
         setupViewPager()
 
-        // Убираем стандартный TabLayout, так как будем использовать меню
-        view.findViewById<View>(R.id.TabLayout).visibility = View.GONE
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.activity_empty_comps, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.navigActives -> {
-                viewPager.currentItem = 0
-                return true
-            }
-            R.id.navigProfile -> {
-                viewPager.currentItem = 1
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun setupViewPager() {
-        val adapter = AdapterSports(this)
-        adapter.addFrag(MineFragment.newInstance(), "Мои")
-        adapter.addFrag(UsersFragment.newInstance(), "Пользователей")
+        val adapter = AdapterGlobalPager(this)
+        adapter.addFragment(MineFragment.newInstance(), "Мои")
+        adapter.addFragment(UsersFragment.newInstance(), "Пользователей")
 
         viewPager.adapter = adapter
 
-        // Обновляем заголовок ActionBar при переключении вкладок
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                (activity as? AppCompatActivity)?.supportActionBar?.title = adapter.getTitle(position)
-            }
-        })
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = adapter.getPageTitle(position)
+        }.attach()
     }
 }

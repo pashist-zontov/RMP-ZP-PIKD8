@@ -30,10 +30,19 @@ class UsersFragment : Fragment() {
         recView.layoutManager = LinearLayoutManager(context)
 
         val items = listOf(
-            ActItemU.Header("Вчера"),
-            *UserActivitiesData.activities.map { it }.toTypedArray()
+            ActivityItemUsers.Header("Сегодня"),
+            UserActivitiesData.activities[0],
+            UserActivitiesData.activities[1],
+            ActivityItemUsers.Header("22 июня 2022 года"),
+            UserActivitiesData.activities[2]
         )
 
-        recView.adapter = AdapterUsers(items)
+        recView.adapter = UsersAdapter(items) { activityId ->
+            val fragment = GlobalDetailsFragmentUsers.newInstance(activityId.toInt())
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
 }

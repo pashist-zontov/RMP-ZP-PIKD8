@@ -1,32 +1,31 @@
 package ru.fefu.helloworld
 
-
-sealed class ActItem {
-    data class Header (val date: String) : ActItem()
-    data class Act(
+sealed class ActivityItem {
+    data class Header(val date: String) : ActivityItem()
+    data class Activity(
         val id: Int,
         val type: String,
         val distance: String,
         val duration: String,
-        val lastTime: String
-    ) : ActItem()
+        val timeAgo: String
+    ) : ActivityItem()
 }
 
-sealed class ActItemU {
-    data class Header(val date: String) : ActItemU()
-    data class Act(
+sealed class ActivityItemUsers {
+    data class Header(val date: String) : ActivityItemUsers()
+    data class Activity(
         val id: Int,
         val type: String,
         val distance: String,
         val duration: String,
         val timeAgo: String,
         val userName: String
-    ) : ActItemU()
+    ) : ActivityItemUsers()
 }
 
 object UserActivitiesData {
     val activities = listOf(
-        ActItemU.Act(
+        ActivityItemUsers.Activity(
             1,
             "Бег",
             "5.2 км",
@@ -34,7 +33,7 @@ object UserActivitiesData {
             "10 часов назад",
             "@van_darkholme"
         ),
-        ActItemU.Act(
+        ActivityItemUsers.Activity(
             2,
             "Велоспорт",
             "15.7 км",
@@ -42,7 +41,7 @@ object UserActivitiesData {
             "5 часов назад",
             "@cirno"
         ),
-        ActItemU.Act(
+        ActivityItemUsers.Activity(
             3,
             "Плавание",
             "1.2 км",
