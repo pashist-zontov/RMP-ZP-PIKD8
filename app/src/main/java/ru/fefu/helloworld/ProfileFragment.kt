@@ -20,18 +20,18 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val layoutView = inflater.inflate(R.layout.profile_fr, container, false)
-        val exitButton = layoutView.findViewById<Button>(R.id.exitButton)
-        val saveButton = layoutView.findViewById<Button>(R.id.saveButton)
-        val passButton = layoutView.findViewById<TextView>(R.id.passButton)
+        val exitBtn = layoutView.findViewById<Button>(R.id.exitButton)
+        val saveBtn = layoutView.findViewById<Button>(R.id.saveButton)
+        val changePassBtn = layoutView.findViewById<TextView>(R.id.passButton)
 
-        saveButton.setOnClickListener {
+        saveBtn.setOnClickListener {
             (requireActivity() as ActivityPageEmpty).apply {
                 bottomNavMenu.selectedItemId = R.id.navigActives
                 showFragment(SportsFragment.newInstance())
             }
         }
 
-        exitButton.setOnClickListener {
+        exitBtn.setOnClickListener {
             val intent = Intent(requireActivity(), ActivityPageMain::class.java)
 
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -39,6 +39,18 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
             requireActivity().finish()
         }
+
+        changePassBtn.setOnClickListener {
+            ChangePass()
+        }
         return layoutView
+    }
+
+    private fun ChangePass() {
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragmentContainer, ChangePasswordFragment.newInstance())
+            addToBackStack("profile_to_changepass")
+            commit()
+        }
     }
 }

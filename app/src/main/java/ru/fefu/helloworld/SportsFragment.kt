@@ -1,5 +1,6 @@
 package ru.fefu.helloworld
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,9 +32,13 @@ class SportsFragment : Fragment() {
 
         viewPager = view.findViewById(R.id.ViewPager2)
         tabLayout = view.findViewById(R.id.TabLayout)
-        val startButton = view.findViewById<FloatingActionButton>(R.id.letsBegin)
+        val letsBegin = view.findViewById<FloatingActionButton>(R.id.letsBegin)
 
         setupViewPager()
+
+        letsBegin.setOnClickListener {
+            startActivity(Intent(requireActivity(), ActivityStartJourney::class.java))
+        }
 
     }
 

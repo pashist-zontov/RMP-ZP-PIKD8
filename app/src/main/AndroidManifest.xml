@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FEFUTrack"
         tools:targetApi="31">
 
+        <activity
+            android:name=".ActivityStartJourney"
+            android:exported="false" />
         <activity android:name=".ActivityPageMain"
             android:exported="true">
             <intent-filter>
@@ -20,12 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityPageReg">
-        </activity>
-        <activity android:name=".ActivityPageLogin">
-        </activity>
 
-        <activity android:name=".ActivityPageEmpty"></activity>
+
+        <activity android:name=".ActivityPageReg" />
+        <activity android:name=".ActivityPageLogin" />
+
+        <activity android:name=".ActivityPageEmpty" />
     </application>
 
 </manifest>
