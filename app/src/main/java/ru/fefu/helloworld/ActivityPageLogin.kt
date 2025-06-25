@@ -17,5 +17,10 @@ class ActivityPageLogin : AppCompatActivity() {
         }
 
         val regButton: Button = findViewById(R.id.regButton)
+
+        regButton.setOnClickListener {
+            val intent = Intent(this, ActivityEmpty::class.java)
+            startActivity(intent)
+        }
     }
 }

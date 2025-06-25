@@ -27,8 +27,8 @@ class ActivitySlotsUsers : Fragment() {
         RecView = view.findViewById(R.id.activityRV)
         RecView.layoutManager = LinearLayoutManager(context)
 
-//        val infos = listOf(
-//            // Упорядоченная информация опроведённой активности, записанной в трекер
+//        val items = listOf(
+//            // Упорядоченная информация о проведённой активности, записанной в трекер
 //        )
     }
 }

@@ -2,7 +2,6 @@ package ru.fefu.helloworld
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -30,6 +29,11 @@ class UsersFragment : Fragment() {
         recView = view.findViewById(R.id.activityRV)
         recView.layoutManager = LinearLayoutManager(context)
 
-        // val items = listOf()
+        val items = listOf(
+            ActItemU.Header("Вчера"),
+            *UserActivitiesData.activities.map { it }.toTypedArray()
+        )
+
+        recView.adapter = AdapterUsers(items)
     }
 }

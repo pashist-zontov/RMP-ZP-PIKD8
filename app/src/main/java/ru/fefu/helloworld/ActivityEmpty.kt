@@ -7,13 +7,16 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ActivityEmpty: AppCompatActivity() {
-    internal lateinit var bottomNavig : BottomNavigationView
+    internal lateinit var bottomNavig: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_empty)
 
         bottomNavig = findViewById(R.id.bottomNavigation)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         if (savedInstanceState == null) {
             showFragment(SportsFragment.newInstance())
@@ -25,7 +28,6 @@ class ActivityEmpty: AppCompatActivity() {
                     showFragment(SportsFragment.newInstance())
                     true
                 }
-
                 R.id.navigProfile -> {
                     showFragment(MineFragment.newInstance())
                     true
@@ -35,9 +37,22 @@ class ActivityEmpty: AppCompatActivity() {
         }
     }
 
-    internal fun showFragment(fragment: Fragment) {
-        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit()
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
+    internal fun showFragment(fragment: Fragment) {
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
+
+        // Обновляем заголовок ActionBar
+        supportActionBar?.title = when (fragment) {
+            is SportsFragment -> "Активности"
+            is MineFragment -> "Профиль"
+            else -> ""
+        }
+    }
 }
