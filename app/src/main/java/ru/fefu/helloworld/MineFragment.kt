@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MineFragment : Fragment() {
     private lateinit var actRec: RecyclerView
+    private lateinit var viewModel:
 
     companion object {
         fun newInstance() = MineFragment()

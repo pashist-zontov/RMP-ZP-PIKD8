@@ -39,7 +39,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         style="@style/FloatButton"
-        android:src="@drawable/play"
+        android:src="@drawable/run"
         app:borderWidth="0dp"
         app:maxImageSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
