@@ -9,8 +9,8 @@ interface DaoDBase {
     suspend fun insert(activityEnt: EntityActivity)
 
     @Query("SELECT * FROM actTypes ORDER BY startTime DESC")
-    fun getAllActs() : LiveData<List<DaoDBase>>
+    fun getAllActions() : LiveData<List<EntityActivity>>
 
     @Query("SELECT * FROM actTypes WHERE id = :actId")
-    suspend fun getActivityById(actId: Int): DaoDBase?
+    suspend fun getActionById(actId: Int): EntityActivity?
 }

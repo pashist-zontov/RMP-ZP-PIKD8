@@ -18,13 +18,13 @@ class BeginFragment : Fragment() {
         private const val ARG_END_TIME = "end_time"
 
         fun newInstance(
-            sportType: String,
+            spType: String,
             distance: Double,
             startTime: Long,
             endTime: Long
         ) = BeginFragment().apply {
             arguments = Bundle().apply {
-                putString(ARG_SPORT_TYPE, sportType)
+                putString(ARG_SPORT_TYPE, spType)
                 putDouble(ARG_DISTANCE, distance)
                 putLong(ARG_START_TIME, startTime)
                 putLong(ARG_END_TIME, endTime)

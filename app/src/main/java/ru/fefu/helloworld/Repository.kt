@@ -7,5 +7,11 @@ class Repository(private val Database: DaoDBase) {
         Database.insert(activity)
     }
 
-    fun
+    fun getAllActions(): LiveData<List<EntityActivity>> {
+        return Database.getAllActions()
+    }
+
+    suspend fun getActionById(actionId: Int): EntityActivity? {
+        return Database.getActionById(actionId)
+    }
 }
