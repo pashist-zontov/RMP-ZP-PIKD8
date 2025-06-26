@@ -38,6 +38,10 @@ class ChoiceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val database = ApplicationDB.getDatabase(requireContext())
+        val repository = Repository(database.DaoDatabase())
+        viewModel = ViewModelProvider(this, ViewModelActivity.Factory(repository))[ViewModelActivity::class.java]
+
         val sportsList = listOf(
             SportsTypeAdapter.spItem("Велосипед", R.drawable.bike),
             SportsTypeAdapter.spItem("Бег", R.drawable.run),
